@@ -45,7 +45,6 @@ func requestProcessor(w http.ResponseWriter, r *http.Request) {
 		var currCrossTimeVehicle int = int(math.Ceil(float64(body.Position)/float64(body.Speeds[i]))) + body.EntryTimes[i]
 
 		if res == 0 && currCrossTimeVehicle-prevCrossTimeVehicle >= 2 {
-			fmt.Printf("Entered at %v\n", i)
 			res = prevCrossTimeVehicle
 			curr = true
 		}
