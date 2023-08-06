@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: road-crossing-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: road-crossing
+  template:
+    metadata:
+      labels:
+        app: road-crossing
+    spec:
+      containers:
+        - name: road-crossing
+          image: himasai1423/road-crossing:v1.0 
+          ports:
+            - containerPort: 8080
