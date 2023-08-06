@@ -43,16 +43,13 @@ func requestProcessor(w http.ResponseWriter, r *http.Request) {
 	res := 0
 	for i := 0; i < len(body.Speeds); i++ {
 		var currCrossTimeVehicle int = int(math.Ceil(float64(body.Position)/float64(body.Speeds[i]))) + body.EntryTimes[i]
-		fmt.Printf("%v %v %v \n", currCrossTimeVehicle, prevCrossTimeVehicle, i)
 
 		if res == 0 && currCrossTimeVehicle-prevCrossTimeVehicle >= 2 {
 			fmt.Printf("Entered at %v\n", i)
 			res = prevCrossTimeVehicle
 			curr = true
 		}
-		fmt.Printf("vals res %v %v %v\n", res, currCrossTimeVehicle, i)
 		if res != 0 && currCrossTimeVehicle-res <= 2 && !curr {
-			fmt.Printf("Entered at res %v %v %v\n", res, currCrossTimeVehicle, i)
 			res = 0
 		}
 		prevCrossTimeVehicle = currCrossTimeVehicle
